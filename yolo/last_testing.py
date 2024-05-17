@@ -8,10 +8,10 @@ model.conf = 0.25  # NMS confidence threshold
 model.iou = 0.45  # NMS IoU threshold
 model.agnostic = False  # NMS class-agnostic
 model.multi_label = False  # NMS multiple labels per box
-model.max_det = 1000  # maximum number of detections per image
+model.max_det = 100  # maximum number of detections per image
 
 # set image
-img = r"C:\Users\jorda\Desktop\training\tangerine06.jpg"
+img = r"https://www.shutterstock.com/image-photo/smiling-face-depicted-two-mandarin-600nw-1806465613.jpg"
 
 # perform inference
 results = model(img)
