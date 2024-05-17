@@ -1,30 +1,76 @@
 import yolov5
 import cv2
+import time
 
-# load pretrained model
+# Load pretrained model
 model = yolov5.load('yolov5s.pt')
-  
-# set model parameters
+
+# Set model parameters
 model.conf = 0.25  # NMS confidence threshold
 model.iou = 0.45  # NMS IoU threshold
 model.agnostic = False  # NMS class-agnostic
 model.multi_label = False  # NMS multiple labels per box
-model.max_det = 1000  # maximum number of detections per image
+model.max_det = 1000  # Maximum number of detections per image
+
+# Initialize a list to store detected labels and their bounding boxes
+detected_objects = []
+
+# Time interval for re-detection (in seconds)
+detection_interval = 7
+last_detection_time = 0
+
+def get_latest_label():
+    """Function to retrieve the latest detected label."""
+    if detected_objects:
+        return detected_objects[-1][0]
+    return None
 
 cap = cv2.VideoCapture(0)
 
 while True:
     ret, frame = cap.read()
+    current_time = time.time()
 
+    # Perform detection and update detected_objects list if the interval has passed
+    if current_time - last_detection_time >= detection_interval:
+        last_detection_time = current_time  # Update the last detection time
+
+        results = model(frame)
+
+        # Parse results
+        predictions = results.pred[0]
+        boxes = predictions[:, :4].detach().cpu().numpy()
+        scores = predictions[:, 4].detach().cpu().numpy()
+        categories = predictions[:, 5].detach().cpu().numpy()
+
+        # Keep track of the current detections to avoid duplicates
+        current_detections = []
+
+        for box, score, category in zip(boxes, scores, categories):
+            x1, y1, x2, y2 = box.astype(int)
+            label = model.names[int(category)]
+
+            # Add the detected label and bounding box to the list if not already detected in this interval
+            current_detections.append((label, (x1, y1, x2, y2), score))
+
+        # Update the detected objects list with the new detections
+        detected_objects.extend(current_detections)
+
+        # Print the detected labels
+        print("Detected Labels: ", [obj[0] for obj in detected_objects])
+        print("Latest Detected Label: ", get_latest_label())
+
+    # Perform real-time detection for drawing bounding boxes
     results = model(frame)
 
-    # parse results
+    # Parse results for drawing
     predictions = results.pred[0]
     boxes = predictions[:, :4].detach().cpu().numpy()
     scores = predictions[:, 4].detach().cpu().numpy()
     categories = predictions[:, 5].detach().cpu().numpy()
-    
-    for box,score,category in zip(boxes, scores, categories):
+
+    # Draw bounding boxes and labels on the frame
+    for box, score, category in zip(boxes, scores, categories):
         x1, y1, x2, y2 = box.astype(int)
         label = model.names[int(category)]
         cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
@@ -35,6 +81,6 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
-
 cap.release()
 cv2.destroyAllWindows()
+
