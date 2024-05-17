@@ -1,6 +1,6 @@
-train: ../train/images
-val: ../valid/images
-test: ../test/images
+train: C:\Users\jorda\Desktop\Stockasaurus-Rex\yolo\roboflow\train\images
+val: C:\Users\jorda\Desktop\Stockasaurus-Rex\yolo\roboflow\valid\images
+test: C:\Users\jorda\Desktop\Stockasaurus-Rex\yolo\roboflow\test\images
 
 nc: 6
 names: ['banana', 'egg carton', 'eggs', 'milk', 'tangerine', 'yoghurt']

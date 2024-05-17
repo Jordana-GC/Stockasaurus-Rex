@@ -3,7 +3,7 @@ import cv2
 import time
 
 # Load pretrained model
-model = yolov5.load('yolov5s.pt')
+model = yolov5.load(r"C:\Users\jorda\Desktop\Stockasaurus-Rex\yolo\runs\train\yolov5_training2\weights\best.pt")
 
 # Set model parameters
 model.conf = 0.25  # NMS confidence threshold
