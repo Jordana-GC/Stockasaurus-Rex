@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Form</title>
+</head>
+<body>
+    <form action="/submit" method="POST">
+        <p><label for="fridgeNumber">Fridge Number:</label></p>
+        <p><input type="text" id="fridgeNumber" name="fridgeNumber"></p>
+        <p><label for="itemName">Item Name:</label></p>
+        <p><input type="text" id="itemName" name="itemName"></p>
+        <p><label for="freshDay">Fresh Day:</label></p>
+        <p><input type="text" id="freshDay" name="freshDay"></p>
+        <p><label for="entryDate">Entry Date:</label></p>
+        <p><input type="text" id="entryDate" name="entryDate"></p>
+        <input type="submit" value="Add">
+    </form>
+    <br>
+    <!-- fetching data from database -->
+    <form action="/fetch" method="GET">
+        <input type="submit" value="View My Stock">
+    </form>
+</body>
+</html>
