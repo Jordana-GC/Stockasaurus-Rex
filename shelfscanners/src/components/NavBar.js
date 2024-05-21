@@ -8,7 +8,7 @@ const NavBar = () => {
             <div className="logo">Stockosaurus Rex</div>
             <ul>
                 <li><Link to="/">Fridges</Link></li>
-                <li><Link to="/notifications">Notifications</Link></li>
+                <li><Link to="/Notifications">Notifications</Link></li>
             </ul>
         </div>
     );
