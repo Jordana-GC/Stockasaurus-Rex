@@ -15,4 +15,7 @@ INSERT INTO item(itemName, freshDay)
 VALUES ('eggs', '14')
 
 INSERT INTO item(itemName, freshDay)
-VALUES ('duiven', '3')
+VALUES ('banana', '3')
+
+INSERT INTO item(itemName, freshDay)
+VALUES ('apple', '6')
