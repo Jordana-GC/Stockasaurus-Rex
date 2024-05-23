@@ -22,6 +22,8 @@ Bocheng Peng
 
 Anastasia Lukanova
 
+Quentin Hamelet
+
 
 ## Features
 
@@ -29,6 +31,8 @@ Anastasia Lukanova
 - Clear overview of all refrigerator products
 - Real-time detection og product additions and removals.
 - Expiry date tracking and alerts 
+
+![Logo](LOGO.png)
 
 
 
