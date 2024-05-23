@@ -36,7 +36,7 @@ const SpecificFridge = () => {
                     <tbody>
                       {items.length === 0 ? (
                         <tr>
-                          <td colSpan="3">No items found</td>
+                          <td colSpan="3">No Items Currently</td>
                         </tr>
                       ) : (
                         items.map((item) => (
