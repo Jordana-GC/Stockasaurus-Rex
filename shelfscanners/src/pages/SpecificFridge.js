@@ -1,21 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import './Style.css';
 
 const SpecificFridge = () => {
     const { fridgeNumber } = useParams();
+    console.log("fridgeNumber:", fridgeNumber);
+    const [items, setItems] = useState([]);
 
-    // Dummy data
-    const items = [
-        { name: 'Milk', entryDate: '2024-05-01', expiryDate: '2024-05-10' },
-        { name: 'Eggs', entryDate: '2024-05-05', expiryDate: '2024-05-20' },
-        { name: 'Banana', entryDate: '2024-05-03', expiryDate: '2024-05-15' },
-    ];
+    useEffect(() => {
+        fetch(`http://localhost:5000/api/fridge/${fridgeNumber}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => setItems(data))
+            .catch(error => console.error('Error fetching fridge data:', error));
+    }, [fridgeNumber]);
 
     return (
         <div className="specific-fridge-page">
-            <NavBar />
+            <NavBar/>
             <div className='specific-fridge-content'>
                 <h1>Fridge {fridgeNumber}</h1>
                 <table>
@@ -27,13 +34,19 @@ const SpecificFridge = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {items.map((item, index) => (
-                            <tr key={index}>
-                                <td>{item.name}</td>
-                                <td>{item.entryDate}</td>
-                                <td>{item.expiryDate}</td>
-                            </tr>
-                        ))}
+                      {items.length === 0 ? (
+                        <tr>
+                          <td colSpan="3">No items found</td>
+                        </tr>
+                      ) : (
+                        items.map((item) => (
+                          <tr key={item.itemID}>
+                            <td>{item.itemName}</td>
+                            <td>{item.entryDate}</td>
+                            <td>{item.expiryDate}</td>
+                          </tr>
+                        ))
+                      )}
                     </tbody>
                 </table>
             </div>
