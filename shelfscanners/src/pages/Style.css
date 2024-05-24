@@ -11,7 +11,6 @@
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
-    padding: 20px;
     background-color: #f0f0f0;
 }
 
@@ -53,7 +52,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding-left: 10px;
+    background-color: #f0f0f0;
 }
 
 .specific-fridge-content h1 {
@@ -85,16 +84,12 @@ td {
     text-align: center;
 }
 
-.specific-fridge-content h1 {
-    margin-bottom: 20px;
-}
-
+/* Notifications styles */
 .notifications-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
-    padding: 20px;
     background-color: #f0f0f0;
 }
 

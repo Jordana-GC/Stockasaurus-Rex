@@ -4,31 +4,39 @@
     padding: 20px;
     background-color: #676884;
     color: white;
-    min-width: 200px;
+    min-width: 250px;
     height: 100vh;
 }
 
 .navbar .logo {
     font-size: 24px;
-    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 250px;
 }
 
 .navbar ul {
     list-style: none;
     padding: 0;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .navbar ul li {
-    margin: 10px 0;
+    margin: 0 0 25px 0;
     font-size: 18px;
 }
 
 .navbar ul li a {
-    color: white;
     text-decoration: none;
+    color: white;
+    padding: 8px 16px;
+    background-color: #565479;
+    border-radius: 12px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .navbar ul li a:hover {
-    text-decoration: underline;
+    background-color: #48456e;
+    color: #dcdde1;
 }
