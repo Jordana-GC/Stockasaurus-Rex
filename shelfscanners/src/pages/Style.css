@@ -23,27 +23,32 @@
 .fridges-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 50px;
+    gap: 35px;
     margin-top: 40px;
 }
 
 .fridge-button {
-    background-color: #676884;
+    display: inline-block;
+    padding: 35px;
+    margin: 10px;
+    background-color: #565479;
     color: white;
-    padding: 40px;
     text-align: center;
-    cursor: pointer;
-    border-radius: 8px;
-}
-
-.fridge-button a {
-    color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 20px;
+    border-radius: 9px;
+    transition: background-color 0.3s ease;
 }
 
-.fridge-button a:hover {
-    text-decoration: underline;
+.fridge-button:hover {
+    background-color: #48456e;
+}
+
+.fridge-button div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 /* SpecificFridge styles */

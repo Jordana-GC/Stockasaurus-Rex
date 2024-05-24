@@ -4,9 +4,11 @@ import '../pages/Style.css';
 
 const FridgeButton = ({ fridgeNumber }) => {
     return (
-        <div className="fridge-button">
-            <Link to={`/fridge/${fridgeNumber}`}>Fridge {fridgeNumber}</Link>
-        </div>
+        <Link to={`/fridge/${fridgeNumber}`} className="fridge-button">
+            <div>
+                Fridge {fridgeNumber}
+            </div>
+        </Link>
     );
 };
 
