@@ -10,7 +10,7 @@ CORS(app)
 # create a trigger in database to calculate expiry date
 def create_trigger():
     try:
-        conn = sqlite3.connect("stock.db")
+        conn = sqlite3.connect("stockdb.db")
         cursor = conn.cursor()
         cursor.execute('''
             CREATE TRIGGER IF NOT EXISTS calculate_expiry_date
@@ -31,7 +31,7 @@ def create_trigger():
 
 
 def get_db_connection():
-    conn = sqlite3.connect('stock.db')
+    conn = sqlite3.connect('stockdb.db')
     conn.row_factory = sqlite3.Row
     return conn
 
@@ -44,7 +44,7 @@ def get_fridge_items(fridge_number):
     try:
         conn = get_db_connection()
         items = conn.execute(
-            'SELECT itemName, entryDate, expiryDate FROM STOCK WHERE fridgeNumber = ?', (fridge_number,)
+            'SELECT itemName, entryDate, expiryDate FROM item_fridge WHERE fridgeNumber = ?', (fridge_number,)
         ).fetchall()
         items_list = [dict(item) for item in items]
         print(f"Query result: {items_list}")
@@ -59,13 +59,13 @@ def get_fridge_items(fridge_number):
 
 def check_expiry_dates():
     try:
-        conn = sqlite3.connect("stock.db")
+        conn = sqlite3.connect("stockdb.db")
         cursor = conn.cursor()
         # get the date of today and the date of 3 days later
         today = datetime.now().strftime('%Y-%m-%d')
         three_days_from_now = (datetime.now() + timedelta(days=3)).strftime('%Y-%m-%d')
         # check if there is any item that will expiry within 3 days
-        cursor.execute("SELECT itemName, expiryDate FROM STOCK WHERE expiryDate BETWEEN ? AND ?", (today, three_days_from_now))
+        cursor.execute("SELECT itemName, expiryDate FROM item_fridge WHERE expiryDate BETWEEN ? AND ?", (today, three_days_from_now))
         notifications = cursor.fetchall()
 
         if notifications:

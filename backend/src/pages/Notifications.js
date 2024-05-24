@@ -14,7 +14,7 @@ const Notifications = () => {
                 return response.json();
             })
             .then(data => {
-                console.log("Fetched data:", data); // 打印获取的数据
+                console.log("Fetched data:", data);
                 setNotifications(data);
             })
             .catch(error => console.error('Error fetching notifications:', error));
