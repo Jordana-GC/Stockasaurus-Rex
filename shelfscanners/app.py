@@ -1,0 +1,67 @@
+from flask import Flask, jsonify
+import sqlite3
+from flask_cors import CORS
+from datetime import datetime, timedelta
+
+app = Flask(__name__)
+CORS(app)
+
+def get_db_connection():
+    conn = sqlite3.connect('stockdb.db')
+    conn.row_factory = sqlite3.Row
+    return conn
+
+
+# npm package "concurrently" has been installed, frontend and backend server will both run when npm start
+@app.route('/api/fridge/<int:fridge_number>', methods=['GET'])
+def get_fridge_items(fridge_number):
+    print(f"Received request for fridge number: {fridge_number} (type: {type(fridge_number)})")
+    conn = None
+    try:
+        conn = get_db_connection()
+        items = conn.execute('SELECT itemName, entryDate, expiryDate FROM item_fridge WHERE fridgeNumber = ?', (fridge_number,)).fetchall()
+        items_list = [dict(item) for item in items]
+        print(f"Query result: {items_list}")
+        return jsonify(items_list)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return jsonify({"error": "An error occurred while fetching data"}), 500
+    finally:
+        if conn:
+            conn.close()
+
+
+def check_expiry_dates():
+    try:
+        conn = sqlite3.connect("stockdb.db")
+        cursor = conn.cursor()
+        # get the date of today and the date of 3 days later
+        today = datetime.now().strftime('%Y-%m-%d')
+        three_days_from_now = (datetime.now() + timedelta(days=3)).strftime('%Y-%m-%d')
+        # check if there is any item that will expiry within 3 days
+        cursor.execute("SELECT itemName, expiryDate FROM item_fridge WHERE expiryDate BETWEEN ? AND ?", (today, three_days_from_now))
+        notifications = cursor.fetchall()
+
+        if notifications:
+            cursor.execute("DELETE FROM notifications")
+            for notification in notifications:
+                cursor.execute("INSERT INTO notifications (itemName, expiryDate) VALUES (?, ?)", notification)
+            conn.commit()
+        print(f"Notifications to be returned: {notifications}")
+        return notifications
+    except sqlite3.Error as e:
+        print(f'Error checking expiry dates: {e}')
+        return []
+    finally:
+        if conn:
+            conn.close()
+
+
+@app.route('/api/Notifications', methods=['GET'])
+def notifications():
+    expiry_lists = check_expiry_dates()
+    return jsonify(expiry_lists)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)

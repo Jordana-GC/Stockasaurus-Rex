@@ -14,10 +14,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "concurrently \"npm run start-front\" \"npm run start-back\"",
+    "start-front": "react-scripts start",
+    "start-back": "python app.py"
   },
   "eslintConfig": {
     "extends": [
