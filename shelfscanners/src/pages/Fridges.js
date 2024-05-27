@@ -11,7 +11,7 @@ const Fridges = () => {
     };
 
     return (
-        <div className="fridges-page">
+        <div className="main-content">
             <NavBar />
             <div className="fridges-content">
                 <h1>Total overview of all fridges</h1>
