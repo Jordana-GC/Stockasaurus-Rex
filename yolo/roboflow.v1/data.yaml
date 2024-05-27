@@ -1,0 +1,13 @@
+train: C:\Users\jorda\Desktop\Stockasaurus-Rex\yolo\roboflow\train\images
+val: C:\Users\jorda\Desktop\Stockasaurus-Rex\yolo\roboflow\valid\images
+test: C:\Users\jorda\Desktop\Stockasaurus-Rex\yolo\roboflow\test\images
+
+nc: 6
+names: ['banana', 'egg carton', 'eggs', 'milk', 'tangerine', 'yoghurt']
+
+roboflow:
+  workspace: stockasaurus-rex-dataset
+  project: shelf-scanners
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/stockasaurus-rex-dataset/shelf-scanners/dataset/1
