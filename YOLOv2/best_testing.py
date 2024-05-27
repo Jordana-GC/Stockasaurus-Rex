@@ -1,17 +1,17 @@
-import yolov5
+import torch
 import cv2
 import time
+import numpy as np
 
-# Load trained model
-model = yolov5.load(r"C:\Users\jorda\Desktop\Stockasaurus-Rex\YOLOv2\yolov5\runs\train\exp3\weights\best.pt")
-#model = yolov5.load(r"C:\Users\jorda\Desktop\Stockasaurus-Rex\YOLOv2\yolov5\runs\train\exp3\weights\last.pt")
+# Load the YOLOv5 model
+model = torch.hub.load(r'C:\Users\jorda\Desktop\Stockasaurus-Rex\YOLOv2\yolov5', 'custom', path=r'C:\Users\jorda\Desktop\Stockasaurus-Rex\YOLOv2\yolov5\runs\train\exp3\weights\best.pt', source='local')
 
 # Set model parameters
-model.conf = 0.25  # NMS confidence threshold
-model.iou = 0.45  # NMS IoU threshold
-model.agnostic = False  # NMS class-agnostic
+model.conf = 0.6  # NMS confidence threshold
+model.iou = 0.5  # NMS IoU threshold
+model.agnostic = True  # NMS class-agnostic
 model.multi_label = False  # NMS multiple labels per box
-model.max_det = 100  # Maximum number of detections per image
+model.max_det = 10  # Maximum number of detections per image
 
 # Initialize a list to store detected labels and their bounding boxes
 detected_objects = []
@@ -30,6 +30,9 @@ cap = cv2.VideoCapture(0)
 
 while True:
     ret, frame = cap.read()
+    if not ret:
+        break
+
     current_time = time.time()
 
     # Perform detection and update detected_objects list if the interval has passed
