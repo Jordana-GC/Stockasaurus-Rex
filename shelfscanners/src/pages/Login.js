@@ -10,7 +10,7 @@ function Login() {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Example logic
-        if (email === 'stockosaurus@rex.com' && password === 'StockosaurusRex') {
+        if (email === 'stockasaurus@rex.com' && password === 'Rex') {
             console.log('Email:', email);
             console.log('Password:', password);
             window.location.href = '/fridges';

@@ -1,8 +1,16 @@
-.fridges-page {
-    display: flex;
+body {
+    font-family: "Times New Roman", Serif;
 }
 
-.specific-fridge-page {
+h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    margin-top: 50px;
+    color: #676884;
+    font-style: italic;
+}
+
+.main-content {
     display: flex;
 }
 
@@ -12,12 +20,6 @@
     align-items: center;
     flex-grow: 1;
     background-color: #f0f0f0;
-}
-
-.fridges-content h1 {
-    font-size: 40px;
-    margin-bottom: 20px;
-    color: #676884;
 }
 
 .fridges-container {
@@ -60,12 +62,6 @@
     background-color: #f0f0f0;
 }
 
-.specific-fridge-content h1 {
-    font-size: 40px;
-    margin-bottom: 20px;
-    color: #676884;
-}
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -96,12 +92,6 @@ td {
     align-items: center;
     flex-grow: 1;
     background-color: #f0f0f0;
-}
-
-.notifications-content h1 {
-    font-size: 40px;
-    margin-bottom: 20px;
-    color: #676884;
 }
 
 .notification-item {

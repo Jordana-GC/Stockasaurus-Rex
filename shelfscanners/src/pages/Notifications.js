@@ -11,7 +11,7 @@ const Notifications = () => {
     ];
 
     return (
-        <div className="fridges-page">
+        <div className="main-content">
             <NavBar />
             <div className="notifications-content">
                 <h1>Notifications</h1>

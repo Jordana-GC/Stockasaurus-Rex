@@ -14,7 +14,7 @@ const SpecificFridge = () => {
     ];
 
     return (
-        <div className="specific-fridge-page">
+        <div className="main-content">
             <NavBar />
             <div className='specific-fridge-content'>
                 <h1>Fridge {fridgeNumber}</h1>
