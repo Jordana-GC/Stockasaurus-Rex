@@ -3,7 +3,7 @@ body {
 }
 
 h1 {
-    font-size: 40px;
+    font-size: 50px;
     margin-bottom: 20px;
     margin-top: 50px;
     color: #676884;
@@ -37,7 +37,7 @@ h1 {
     color: white;
     text-align: center;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 30px;
     border-radius: 9px;
     transition: background-color 0.3s ease;
 }
