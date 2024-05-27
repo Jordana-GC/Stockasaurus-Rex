@@ -11,9 +11,9 @@ const Fridges = () => {
     };
 
     return (
-        <div className="main-content">
+        <div className="main">
             <NavBar />
-            <div className="fridges-content">
+            <div className="main-content">
                 <h1>Total overview of all fridges</h1>
                 <div className="fridges-container">
                     <FridgeButton fridgeNumber={1} onClick={() => handleFridgeClick(1)} />

@@ -1,5 +1,6 @@
 body {
     font-family: "Times New Roman", Serif;
+    height: 100vh;
 }
 
 h1 {
@@ -10,11 +11,11 @@ h1 {
     font-style: italic;
 }
 
-.main-content {
+.main {
     display: flex;
 }
 
-.fridges-content {
+.main-content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,6 +23,7 @@ h1 {
     background-color: #f0f0f0;
 }
 
+/* Fridges styles */
 .fridges-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -54,14 +56,6 @@ h1 {
 }
 
 /* SpecificFridge styles */
-.specific-fridge-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    background-color: #f0f0f0;
-}
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -86,14 +80,6 @@ td {
 }
 
 /* Notifications styles */
-.notifications-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-grow: 1;
-    background-color: #f0f0f0;
-}
-
 .notification-item {
     display: flex;
     align-items: center;
@@ -116,7 +102,7 @@ td {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #d3d3d3;
+    background-color: #f0f0f0;
 }
 
 .login-container {
@@ -151,14 +137,17 @@ td {
     border-radius: 5px;
 }
 
-.button-container {
+.login-button {
     display: flex;
     justify-content: center;
 }
 
 button {
+    display: flex;
+    justify-content: center;
     background-color: #d3d3d3;
     color: #565479;
+    font-weight: bold;
     border: none;
     padding: 10px 20px;
     border-radius: 20px;

@@ -21,9 +21,9 @@ const SpecificFridge = () => {
     }, [fridgeNumber]);
 
     return (
-        <div className="main-content">
+        <div className="main">
             <NavBar />
-            <div className='specific-fridge-content'>
+            <div className='main-content'>
                 <h1>Fridge {fridgeNumber}</h1>
                 <table>
                     <thead>

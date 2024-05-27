@@ -45,7 +45,7 @@ function Login() {
                         />
                     </div>
                     {error && <p className="error">{error}</p>}
-                    <div className="button-container">
+                    <div className="login-button">
                         <LoginButton disabled={!email || !password} />
                     </div>
                 </form>

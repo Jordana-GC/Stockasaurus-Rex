@@ -19,9 +19,9 @@ const Notifications = () => {
             .catch(error => console.error('Error fetching notifications:', error));
     }, []);
     return (
-        <div className="main-content">
+        <div className="main">
             <NavBar />
-            <div className="notifications-content">
+            <div className="main-content">
                 <h1>Notifications</h1>
                 <ul>
                     {notifications.length > 0 ? (
