@@ -8,7 +8,7 @@ def hash_password(password):
 
 def add_user(email, plain_password):
     hashed_password = hash_password(plain_password)
-    cursor.execute("INSERT INTO user (email, password) VALUES (?, ?)", (email, hashed_password))
+    cursor.execute("INSERT INTO users (email, password) VALUES (?, ?)", (email, hashed_password))
     conn.commit()
 
 def main():
