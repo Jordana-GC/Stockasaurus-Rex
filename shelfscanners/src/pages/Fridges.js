@@ -3,6 +3,7 @@ import NavBar from '../components/NavBar';
 import FridgeButton from '../components/FridgeButton';
 import SpecificFridge from '../pages/SpecificFridge';
 import './Style.css';
+import Footer from "../components/Footer";
 
 const Fridges = () => {
     const [selectedFridge, setSelectedFridge] = useState(null);
@@ -23,6 +24,7 @@ const Fridges = () => {
                 </div>
                 {selectedFridge && <SpecificFridge fridgeNumber={selectedFridge} />}
             </div>
+            <Footer/>
         </div>
     );
 };

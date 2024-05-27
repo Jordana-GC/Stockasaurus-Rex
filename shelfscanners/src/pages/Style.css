@@ -81,19 +81,15 @@ td {
 
 /* Notifications styles */
 .notification-item {
-    display: flex;
-    align-items: center;
-    margin: 10px 0;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 0 30px;
+    list-style: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.notification-item input {
-    margin-right: 10px;
-}
-
-.notification-item span {
-    font-size: 20px;
+.notification-item p {
+    font-size: 25px;
 }
 
 /* Login styles */
@@ -103,6 +99,7 @@ td {
     align-items: center;
     height: 100vh;
     background-color: #f0f0f0;
+    color: white;
 }
 
 .login-container {
@@ -114,7 +111,6 @@ td {
 }
 
 .login-container h2 {
-    color: white;
     margin-bottom: 20px;
 }
 

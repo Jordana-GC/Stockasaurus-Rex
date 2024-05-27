@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import './Style.css';
+import Footer from "../components/Footer";
 
 const Notifications = () => {
     const [notifications, setNotifications] = useState([]);
@@ -31,10 +32,13 @@ const Notifications = () => {
                             </li>
                         ))
                     ) : (
-                        <li>No notifications found.</li>
+                        <li className="notification-item">
+                            <p>No notifications found.</p>
+                        </li>
                     )}
                 </ul>
             </div>
+            <Footer />
         </div>
     );
 };

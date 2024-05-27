@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import './Style.css';
+import Footer from "../components/Footer";
 
 const SpecificFridge = () => {
     const { fridgeNumber } = useParams();
@@ -50,6 +51,7 @@ const SpecificFridge = () => {
                     </tbody>
                 </table>
             </div>
+            <Footer />
         </div>
     );
 };
