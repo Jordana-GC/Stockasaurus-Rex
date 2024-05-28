@@ -1,6 +1,6 @@
-train: ../train/images
-val: ../valid/images
-test: ../test/images
+train: C:\Users\jorda\Desktop\Stockasaurus-Rex\dataset\train\images
+val: C:\Users\jorda\Desktop\Stockasaurus-Rex\dataset\valid\images
+test: C:\Users\jorda\Desktop\Stockasaurus-Rex\dataset\test\images
 
 nc: 6
 names: ['banana', 'broccoli', 'egg carton', 'eggs', 'milk', 'yoghurt']
