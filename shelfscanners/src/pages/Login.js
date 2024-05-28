@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';  // Import useNavigate for navigation
+import NavBar from '../components/NavBar';
 import './Style.css';
 import LoginButton from '../components/LoginButton';
 
@@ -6,18 +8,35 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();  // Initialize useNavigate hook
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Example logic
-        if (email === 'stockasaurus@rex.com' && password === 'Rex') {
-            console.log('Email:', email);
-            console.log('Password:', password);
-            window.location.href = '/fridges';
-        } else {
-            setError('Invalid email or password');
-        }
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+
+    try {
+      const response = await fetch('http://localhost:5000/api/Login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+        // Contains the JSON stringified data of the user's email and password.
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert('Login is successful!');
+        navigate('/fridges');
+      } else {
+        setError(data.message);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('An error occurred while trying to log in.');
+    }
+  };
 
     return (
         <div className="login-page">
