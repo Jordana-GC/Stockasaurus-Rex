@@ -154,3 +154,34 @@ button {
 button:hover {
     background-color: #888888;
 }
+
+/* Prev/next button styles */
+.button-container {
+    margin-top: 40px;
+    max-width: 800px; 
+    width: 100%;
+    display: flex;
+    justify-content: space-between;    
+}
+
+.previous-button,
+.next-button {
+    padding: 10px 20px;
+    background-color: #565479;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.previous-button:hover,
+.next-button:hover {
+    background-color: #48456e;
+}
+
+.previous-button:disabled,
+.next-button:disabled {
+    background-color: #888;
+    cursor: not-allowed;
+}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import './Style.css';
 import Footer from "../components/Footer";
@@ -8,6 +8,9 @@ const SpecificFridge = () => {
     const { fridgeNumber } = useParams();
     console.log("fridgeNumber:", fridgeNumber);
     const [items, setItems] = useState([]);
+
+    const navigate = useNavigate();
+    const maxFridges = 4; 
 
     useEffect(() => {
         fetch(`http://localhost:5000/api/fridge/${fridgeNumber}`)
@@ -20,6 +23,20 @@ const SpecificFridge = () => {
             .then(data => setItems(data))
             .catch(error => console.error('Error fetching fridge data:', error));
     }, [fridgeNumber]);
+
+    const handleNextClick = () => {
+        const nextFridge = Number(fridgeNumber) + 1;
+        if (nextFridge <= maxFridges) {
+            navigate(`/fridge/${nextFridge}`);
+        }
+    };
+
+    const handlePreviousClick = () => {
+        const previousFridge = Number(fridgeNumber) - 1;
+        if (previousFridge >= 1) {
+            navigate(`/fridge/${previousFridge}`);
+        }
+    };
 
     return (
         <div className="main">
@@ -50,6 +67,22 @@ const SpecificFridge = () => {
                       )}
                     </tbody>
                 </table>
+                <div className="button-container">
+                    <button 
+                        className="previous-button"
+                        onClick={handlePreviousClick}
+                        disabled={Number(fridgeNumber) <= 1}
+                    >
+                        Previous
+                    </button>
+                    <button 
+                        className="next-button"
+                        onClick={handleNextClick}
+                        disabled={Number(fridgeNumber) >= maxFridges}
+                    >
+                        Next
+                    </button>
+                </div>
             </div>
             <Footer />
         </div>

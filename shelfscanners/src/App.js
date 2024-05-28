@@ -10,9 +10,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/fridges" element={<Fridges />} />
         <Route path="/fridge/:fridgeNumber" element={<SpecificFridge />} />
         <Route path="/notifications" element={<Notifications />} />
-        <Route path="/fridges" element={<Fridges />} />
       </Routes>
     </BrowserRouter>
   );
