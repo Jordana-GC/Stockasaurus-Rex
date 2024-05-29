@@ -41,16 +41,18 @@ def get_fridge_items(fridge_number):
 
 def check_expiry_dates():
     try:
+        # refreshed_data = refresh_item_fridge()
         conn = sqlite3.connect("stockdb.db")
         cursor = conn.cursor()
-        # get the date of today and the date of 3 days later
+        # Get the date of today and the date of 3 days later
         today = datetime.now().strftime('%Y-%m-%d')
         three_days_from_now = (datetime.now() + timedelta(days=3)).strftime('%Y-%m-%d')
+
         # Check if there is any item that is already expired or will expire within 3 days
         query = """
-        SELECT itemID, itemName, fridgeNumber, expiryDate 
-        FROM item_fridge 
-        WHERE expiryDate <= :three_days_from_now
+        SELECT itemID, itemName, fridgeNumber, expiryDate
+        FROM item_fridge
+        WHERE expiryDate <= :three_days_from_now AND hidden = 0
         """
         cursor.execute(query, {'three_days_from_now': three_days_from_now})
         notifications = cursor.fetchall()
@@ -58,12 +60,6 @@ def check_expiry_dates():
         print(f"Number of notifications fetched: {len(notifications)}")
         print(f"Notifications fetched: {notifications}")
 
-        if notifications:
-            cursor.execute("DELETE FROM notifications")
-            for notification in notifications:
-                cursor.execute("INSERT INTO notifications(itemID, itemName, fridgeNumber, expiryDate) VALUES (?, ?, ?, ?)", notification)
-            conn.commit()
-        print(f"Notifications to be returned: {notifications}")
         return notifications
     except sqlite3.Error as e:
         print(f'Error checking expiry dates: {e}')
@@ -71,6 +67,16 @@ def check_expiry_dates():
     finally:
         if conn:
             conn.close()
+
+
+@app.route('/api/Notifications', methods=['GET'])
+def notifications():
+    try:
+        expiry_lists = check_expiry_dates()
+        return jsonify(expiry_lists), 200
+    except Exception as e:
+        print(f'Error retrieving notifications: {e}')
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route('/api/Login', methods=['POST'])
@@ -90,23 +96,18 @@ def login():
         return jsonify({'success': False, 'message': 'Incorrect email or password, please try again.'})
 
 
-@app.route('/api/Notifications', methods=['GET'])
-def notifications():
-    expiry_lists = check_expiry_dates()
-    return jsonify(expiry_lists)
-
-
-@app.route('/api/DeleteNotification/<int:itemID>', methods=['DELETE'])
-def delete_notification(itemID):
+# New hide_notification route
+@app.route('/api/HideNotification/<int:itemID>', methods=['POST'])
+def mark_notification(itemID):
     try:
         conn = sqlite3.connect("stockdb.db")
         cursor = conn.cursor()
-        cursor.execute("DELETE FROM notifications WHERE itemID=?", (itemID,))
+        cursor.execute("UPDATE item_fridge SET hidden = 1 WHERE itemID = ?", (itemID,))
         conn.commit()
-        return jsonify({"message": "Notification deleted successfully"}), 200
+        return jsonify({"message": "Notification hidden successfully"}), 200
     except sqlite3.Error as e:
-        print(f'Error deleting notification: {e}')
-        return jsonify({"message": "Failed to delete notification"}), 500
+        print(f'Error hiding notification: {e}')
+        return jsonify({"error": str(e)}), 500
     finally:
         if conn:
             conn.close()
