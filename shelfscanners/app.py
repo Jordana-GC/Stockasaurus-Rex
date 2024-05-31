@@ -45,8 +45,8 @@ def check_expiry_dates():
         conn = sqlite3.connect("stockdb.db")
         cursor = conn.cursor()
         # Get the date of today and the date of 3 days later
-        today = datetime.now().strftime('%Y-%m-%d')
-        three_days_from_now = (datetime.now() + timedelta(days=3)).strftime('%Y-%m-%d')
+        today = datetime.now().strftime('%d-%m-%Y')
+        three_days_from_now = (datetime.now() + timedelta(days=3)).strftime('%d-%m-%Y')
 
         # Check if there is any item that is already expired or will expire within 3 days
         query = """
