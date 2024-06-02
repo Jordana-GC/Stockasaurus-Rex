@@ -77,7 +77,7 @@ const Notifications = () => {
                         ))
                     ) : (
                         <li className="notification-item">
-                            <p>No notifications.</p>
+                            <p>No new notifications.</p>
                         </li>
                     )}
                 </ul>

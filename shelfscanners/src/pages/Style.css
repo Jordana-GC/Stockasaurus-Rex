@@ -27,13 +27,13 @@ h1 {
 .fridges-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 35px;
+    gap: 55px;
     margin-top: 40px;
 }
 
 .fridge-button {
     display: inline-block;
-    padding: 35px;
+    padding: 35px 55px;
     margin: 10px;
     background-color: #565479;
     color: white;
@@ -83,9 +83,11 @@ td {
 .notification-item {
     border: 1px solid #ddd;
     border-radius: 5px;
-    padding: 0 30px;
+    padding: 0;
     list-style: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100vh;
+    text-align: center;
 }
 
 .notification-item p {
@@ -93,7 +95,7 @@ td {
 }
 
 .delete-button {
-    background-color: #48456e;
+    background-color: #565479;
     color: white;
     padding: 6px 10px;
     border: none;
@@ -102,7 +104,7 @@ td {
 }
 
 .delete-button:hover {
-    background-color: #8e44ad;
+    background-color: #48456e;
     cursor: pointer;
 }
 
@@ -172,10 +174,10 @@ button:hover {
 /* Prev/next button styles */
 .button-container {
     margin-top: 40px;
-    max-width: 800px; 
+    max-width: 800px;
     width: 100%;
     display: flex;
-    justify-content: space-between;    
+    justify-content: space-between;
 }
 
 .previous-button,
