@@ -28,7 +28,7 @@ const NavBar = () => {
             .catch(error => console.error('Error fetching notifications count:', error));
     };
 
-    const notificationText = notificationsCount > 0 ? `Notifications(${notificationsCount})` : 'Notifications';
+    const notificationText = notificationsCount > 0 ? `Notifications (${notificationsCount})` : 'Notifications';
 
     return (
         <div className="navbar">

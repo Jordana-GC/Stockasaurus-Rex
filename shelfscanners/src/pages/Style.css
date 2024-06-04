@@ -94,6 +94,10 @@ td {
     font-size: 25px;
 }
 
+.notification-item a {
+    padding: 10px;
+}
+
 .delete-button {
     background-color: #565479;
     color: white;

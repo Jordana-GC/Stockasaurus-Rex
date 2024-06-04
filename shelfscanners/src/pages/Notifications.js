@@ -66,13 +66,13 @@ const Notifications = () => {
                     {notifications.length > 0 ? (
                         notifications.map((notification, index) => (
                             <li key={index} className="notification-item">
-                                <p>On {notification[3]} the {notification[1]} in fridge "{notification[2]}" will expire</p>
+                                <p>On {notification[3]} the {notification[1]} in fridge "{notification[2]}" will expire
                                 <a href={`/api/HideNotification/${notification[0]}`} onClick={(e) => {
                                     e.preventDefault();
                                     if (window.confirm('Warning: hiding this notification will stop the expiry track of the corresponding item in the fridge. Are you sure to hide?')) {
                                         hideNotification(notification[0]);
                                     }
-                                }} className="delete-button">Hide</a>
+                                }} className="delete-button">Hide</a></p>
                             </li>
                         ))
                     ) : (
