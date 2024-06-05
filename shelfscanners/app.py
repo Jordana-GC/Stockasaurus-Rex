@@ -1,4 +1,4 @@
-np from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify
 import sqlite3
 from flask_cors import CORS
 from datetime import datetime, timedelta
