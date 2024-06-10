@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';  // Import useNavigate for navigation
-import NavBar from '../components/NavBar';
 import './Style.css';
 import LoginButton from '../components/LoginButton';
+import Logo from "../assets/StockosaurusRex.png";
 
 function Login() {
     const [email, setEmail] = useState('');
