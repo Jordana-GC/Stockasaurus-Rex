@@ -1,4 +1,4 @@
-import time
+#import time
 
 from datetime import datetime
 
@@ -14,22 +14,32 @@ picam = Picamera2()
 
 button = Button(2)
 
-config = picam.create_video_configuration(main={"size": (1920, 1080)}, lores={"size": (640, 480)}, display="lores")
-picam.configure(config)
+#config = picam.create_video_configuration(main={"size": (640, 480)}, , lores={"size": (640, 480)}, display="lores")
+#picam.configure(config)
 
-encoder = H264Encoder(bitrate=10000000)
+picam.video_configuration.enable_lores()
+picam.video_configuration.lores.size = (640, 480)
+picam.video_configuration.main.size = (640, 480)
+picam.video_configuration.controls.FrameRate = 60.0
+picam.configure("video")
 
-output = "/shared/project-innovate/Stockasaurus-Rex/videoScript/videos/test.h264"
+encoder = H264Encoder(bitrate=25000000)
+
+output = "/shared/projectInnovate/Stockasaurus-Rex/videoScript/videos/test.h264"
 
 def recordVideo():
     picam.start_preview(Preview.QTGL)
     picam.start_recording(encoder, output)
     
-    time.sleep(10)
-    
+#    time.sleep(10)
+    print("Press the button again to end the recording")
+    button.wait_for_press()
+    print("Recording ended")
     picam.stop_recording()
     picam.stop_preview()
 
-button.wait_for_press()
-print("Recording started")
-recordVideo()
+while True:    
+    print("Press to start the recording")
+    button.wait_for_press()
+    print("Recording started")
+    recordVideo()
