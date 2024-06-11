@@ -82,6 +82,11 @@ td {
     text-align: center;
 }
 
+ul {
+    margin: 0;
+    padding: 0;
+}
+
 /* Notifications styles */
 .notification-item {
     border: 1px solid #ddd;
@@ -89,7 +94,8 @@ td {
     padding: 0;
     list-style: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100vh;
+    width: 100%;
+    margin: 20px;
     text-align: center;
 }
 
@@ -210,32 +216,113 @@ button:hover {
 }
 
 /* Responsive styles */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     h1 {
         font-size: 5vw;
     }
 
     .fridge-button {
         font-size: 3vw;
-        padding: 3vw 5vw;
+        padding: 2.5vw 3.5vw;
+        max-width: 80%;
     }
 
     .fridges-container {
         gap: 3vw;
     }
+
+    table, .button-container {
+        max-width: 90%;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    .previous-button,
+    .next-button {
+        padding: 8px 16px;
+    }
+
+    .notification-item p {
+        font-size: 3vw;
+    }
+
+    .notification-item a {
+        font-size: 2.5vw;
+    }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     h1 {
         font-size: 6vw;
     }
 
     .fridge-button {
+        font-size: 3.5vw;
+        padding: 3vw 4vw;
+        max-width: 75%;
+    }
+
+    .fridges-container {
+        gap: 3.5vw;
+    }
+
+    table, .button-container {
+        max-width: 80%;
+    }
+
+    th, td {
+        padding: 6px;
+    }
+
+    .previous-button,
+    .next-button {
+        padding: 6px 12px;
+    }
+
+    .notification-item p {
+        font-size: 3.5vw;
+    }
+
+    .notification-item a {
+        font-size: 3vw;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 7vw;
+    }
+
+    .fridge-button {
         font-size: 4vw;
-        padding: 4vw 6vw;
+        padding: 3.5vw 4.5vw;
+        max-width: 70%;
     }
 
     .fridges-container {
         gap: 4vw;
+    }
+    
+    table, .button-container {
+        max-width: 70%;
+    }
+
+    th, td {
+        padding: 4px;
+    }
+
+    .previous-button,
+    .next-button {
+        padding: 4px 8px;
+    }
+
+    .notification-item p {
+        font-size: 4vw;
+    }
+
+    .notification-item a {
+        font-size: 3.5vw;
     }
 }
