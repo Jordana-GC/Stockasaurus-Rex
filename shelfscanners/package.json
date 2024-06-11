@@ -17,7 +17,7 @@
   "scripts": {
     "start": "concurrently \"npm run start-front\" \"npm run start-back\"",
     "start-front": "react-scripts start",
-    "start-back": "python app.py"
+    "start-back": "python../app.py"
   },
   "eslintConfig": {
     "extends": [
