@@ -15,7 +15,7 @@ function Login() {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:5000/api/Login', {
+      const response = await fetch('http://100.74.58.66:5000/api/Login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
