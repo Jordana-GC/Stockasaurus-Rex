@@ -114,4 +114,4 @@ def mark_notification(itemID):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='100.74.58.66', port=5000)
