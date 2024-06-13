@@ -3,6 +3,7 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
+    background-color: #f0f0f0;
 }
 
 h1 {
@@ -23,7 +24,6 @@ h1 {
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
-    background-color: #f0f0f0;
 }
 
 /* Fridges styles */
@@ -293,16 +293,18 @@ button:hover {
 @media (max-width: 480px) {
     h1 {
         font-size: 7vw;
+        padding-right: 10px;
     }
 
     .fridge-button {
         font-size: 4vw;
-        padding: 3.5vw 4.5vw;
-        max-width: 70%;
+        padding: 6vw 6vw;
+        max-width: 100%;
     }
 
     .fridges-container {
         gap: 4vw;
+        grid-template-columns: 1fr;
     }
     
     table, .button-container {

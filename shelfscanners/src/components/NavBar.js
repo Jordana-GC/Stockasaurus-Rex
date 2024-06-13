@@ -4,9 +4,11 @@ import './NavBar.css';
 import Logo from "../assets/StockosaurusRex.png";
 import FridgeIcon from "../assets/fridge.png";
 import NotificationsIcon from "../assets/notifications.png";
+import BurgerIcon from "../assets/burger-menu.png";
 
 const NavBar = () => {
     const [notificationsCount, setNotificationsCount] = useState(0);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
         // update the number of notifications when the component is loading
@@ -30,24 +32,31 @@ const NavBar = () => {
 
     const notificationText = notificationsCount > 0 ? `Notifications (${notificationsCount})` : 'Notifications';
 
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
+
     return (
         <div className="navbar">
+            <div className="burger" onClick={toggleMenu}>
+                <img src={BurgerIcon} alt="Menu" className="burger-icon" />
+            </div>
             <div className="logo">
                 <Link to="/fridges">
                     <img src={Logo} alt="logo" />
                 </Link>
             </div>
-            <ul>
+            <ul className={menuOpen ? 'open' : ''}>
                 <li>
                     <Link to="/fridges">
                         <img src={FridgeIcon} alt="Fridge" className="nav-icon" />
-                        Fridges
+                        <span>Fridges</span>
                     </Link>
                 </li>
                 <li>
                     <Link to="/notifications">
                         <img src={NotificationsIcon} alt="Notifications" className="nav-icon" />
-                        {notificationText}
+                        <span>{notificationText}</span>
                     </Link>
                 </li>
             </ul>
