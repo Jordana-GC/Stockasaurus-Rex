@@ -7,6 +7,21 @@ Development Timeline: April 22, 2024 - June 21, 2024.
 
 ![Logo](SystemOverviewDiagram.png)
 
+## Deployment
+
+To deploy this project run the following commands:
+
+```bash
+  git clone https://github.com/Jordana-GC/Stockasaurus-Rex.git
+```
+
+```bash
+  cd Stockasaurus-Rex
+```
+
+```bash
+  pip install -r requirements.txt
+```
 
 ## The Shelf-Scanners (The Team)
 
@@ -22,6 +37,8 @@ Bocheng Peng
 
 Anastasia Lukanova
 
+Quentin Hamelet
+
 
 ## Features
 
@@ -35,4 +52,6 @@ Anastasia Lukanova
 ## Feedback
 
 If you have any feedback, please reach out to the project leader at jordana.guilbride.capela@student.nhlstenden.com 
+
+
 
