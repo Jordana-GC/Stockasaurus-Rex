@@ -13,7 +13,7 @@ const SpecificFridge = () => {
     const maxFridges = 4; 
 
     useEffect(() => {
-        fetch(`https://100.74.58.66:5000/api/fridge/${fridgeNumber}`)
+        fetch(`https://100.95.179.98:5000/api/fridge/${fridgeNumber}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);

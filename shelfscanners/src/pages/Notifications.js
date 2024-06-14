@@ -11,7 +11,7 @@ const Notifications = () => {
     }, []);
 
     const fetchNotifications = () => {
-        fetch(`https://100.74.58.66:5000/api/Notifications`)
+        fetch(`https://100.95.179.98:5000/api/Notifications`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
