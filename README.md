@@ -25,7 +25,7 @@ To deploy this product run the following commands:
 
 ## Known Errors
 
-Please refer to the documentation document for the common errors when installing and configuring the product.
+Please refer to the documentation document called "Hardware_Infomation_Document" for the common errors when installing and configuring the product.
 
 ## The Shelf-Scanners (The Team)
 
