@@ -15,7 +15,7 @@ function Login() {
     setError('');
 
     try {
-      const response = await fetch('https://100.74.58.66:5000/api/Login', {
+      const response = await fetch('https://groupgpi.tailf85369.ts.net:5000/api/Login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
