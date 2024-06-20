@@ -9,7 +9,7 @@ Development Timeline: April 22, 2024 - June 21, 2024.
 
 ## Deployment
 
-To deploy this project run the following commands:
+To deploy this product run the following commands:
 
 ```bash
   git clone https://github.com/Jordana-GC/Stockasaurus-Rex.git
@@ -22,6 +22,10 @@ To deploy this project run the following commands:
 ```bash
   pip install -r requirements.txt
 ```
+
+## Known Errors
+
+Please refer to the documentation document for the common errors when installing and configuring the product.
 
 ## The Shelf-Scanners (The Team)
 
