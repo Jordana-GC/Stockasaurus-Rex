@@ -3,22 +3,24 @@ import sqlite3
 from flask_cors import CORS
 from datetime import datetime, timedelta
 import bcrypt
+import ssl
 
 app = Flask(__name__)
 CORS(app)
 
+# Paths to your Tailscale certificate and private key
+TAILSCALE_CERT = 'groupgpi.tailf85369.ts.net.crt'
+TAILSCALE_KEY = 'groupgpi.tailf85369.ts.net.key'
 
 def get_db_connection():
     conn = sqlite3.connect('stockdb.db')
     conn.row_factory = sqlite3.Row
     return conn
 
-
 def login_db_connection():
     conn = sqlite3.connect('logindb.db')
     conn.row_factory = sqlite3.Row
     return conn
-
 
 @app.route('/api/fridge/<int:fridge_number>', methods=['GET'])
 def get_fridge_items(fridge_number):
@@ -38,17 +40,13 @@ def get_fridge_items(fridge_number):
         if conn:
             conn.close()
 
-
 def check_expiry_dates():
     try:
-        # refreshed_data = refresh_item_fridge()
         conn = sqlite3.connect("stockdb.db")
         cursor = conn.cursor()
-        # Get the date of today and the date of 3 days later
         today = datetime.now().strftime('%d-%m-%Y')
         three_days_from_now = (datetime.now() + timedelta(days=3)).strftime('%d-%m-%Y')
 
-        # Check if there is any item that is already expired or will expire within 3 days
         query = """
         SELECT itemID, itemName, fridgeNumber, expiryDate
         FROM item_fridge
@@ -68,7 +66,6 @@ def check_expiry_dates():
         if conn:
             conn.close()
 
-
 @app.route('/api/Notifications', methods=['GET'])
 def notifications():
     try:
@@ -77,7 +74,6 @@ def notifications():
     except Exception as e:
         print(f'Error retrieving notifications: {e}')
         return jsonify({"error": str(e)}), 500
-
 
 @app.route('/api/Login', methods=['POST'])
 def login():
@@ -95,8 +91,6 @@ def login():
     else:
         return jsonify({'success': False, 'message': 'Incorrect email or password, please try again.'})
 
-
-# New hide_notification route
 @app.route('/api/HideNotification/<int:itemID>', methods=['POST'])
 def mark_notification(itemID):
     try:
@@ -112,6 +106,10 @@ def mark_notification(itemID):
         if conn:
             conn.close()
 
-
 if __name__ == '__main__':
-    app.run(host='100.74.58.66', port=5000)
+    # SSL context setup using Tailscale certificate and key
+    context = ssl.SSLContext(ssl.PROTOCOL_TLS)
+    context.load_cert_chain(TAILSCALE_CERT, TAILSCALE_KEY)
+
+    # Run Flask app with SSL enabled
+    app.run(host='groupgpi.tailf85369.ts.net', port=5000, ssl_context=context, debug=True)
